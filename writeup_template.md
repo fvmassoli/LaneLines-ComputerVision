@@ -39,7 +39,7 @@ In order to draw a continuos line I modified the draw_lines() such that it evalu
 
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
 
-![alt text][outputs/gray_scale.jpg]
+![alt text][https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/original.png]
 
 
 ###2. Identify potential shortcomings with your current pipeline
