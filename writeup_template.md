@@ -10,6 +10,7 @@ The pipeline is divided in six major steps:
 
 1. convert the image to a gray scale.
 
+
 ![alt text](https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/gray_scale.png)
 
 2. apply a gaussian kernel in order to smooth the noise. After several trial, a kernel size equal to 7 resulted a good choice. A kernel of size 9 was already too high since it caused some lost in the line representstions.
