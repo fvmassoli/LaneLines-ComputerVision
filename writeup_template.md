@@ -1,45 +1,39 @@
 #**Finding Lane Lines on the Road** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Finding Lane Lines on the Road**
-
 The goals / steps of this project are the following:
 * Make a pipeline that finds lane lines on the road
 * Reflect on your work in a written report
 
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
-
----
-
 ### Reflection
 
-###1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+The pipeline is divided in six major steps:
 
-The pipeline is divided in eight major steps:
+1. convert the image to a gray scale.
 
-##1) Identification of the mask vertexes. These are points that confine the polygon describing the image ROI. 
 
-##2) Representaion of the image in the gray scale by calling the helper method grayscale(image) where the argument "image" is the original input image.
+![alt text](https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/gray_scale.png)
 
-##3) Applciation of a gaussian kernel of size 7 in order to smooth the noise. 
+2. apply a gaussian kernel in order to smooth the noise. After several trial, a kernel size equal to 7 resulted a good choice. A kernel of size 9 was already too high since it caused some lost in the line representstions.
 
-##4-5) Call to the helper methods canny(...) and region_of_interest(...) that find egdes into the image and select the ROI, respectively, based on the vertexes defined in ##1).
+![alt text](https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/blur.png)
 
-##6-7) Call to the methods hough_lines(...) and weighted_img(...) that find lines in the image and overlay them on the original image with a specific tarnsparenncy. 
+3. apply the cv2.Canny(...) method to the image in order to get the edges. The application of the gaussian smearing helps during this phase since it clean up the image from all the smaller edges. This enhance the sensitivity of the canny function to the edges that correspond to real lines in the image.
 
-In order to draw a continuos line I modified the draw_lines() such that it evaluaes the coefficients of a line from two points of the given line itself.
+![alt text](https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/canny.png)
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+4. application of the mask to the canny image in order to retain only lines inside the ROI
 
-![alt text][outputs/gray_scale.jpg]
+![alt text](https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/masked_canny.png)
+
+5. converto the edges into lines by their mapping into the Hough parameter space.
+
+![alt text](https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/lines.png)
+
+6. overlay the detected lane lines to the original image. The helper function weighted_img(...) overlays the lines on the original image with a specific tarnsparenncy. 
+
+![alt text](https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/lane_lines_final_result.png)
+
+In order to draw continuos lines to recognize the lane liens I modified the draw_lines() such that it evaluates the coefficients of a line from two points of the given line itself.
 
 
 ###2. Identify potential shortcomings with your current pipeline
