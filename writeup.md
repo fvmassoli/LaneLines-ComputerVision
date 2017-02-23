@@ -29,7 +29,7 @@ The results from each of the previous steps are shown in the following pictures:
 
 ![alt text](https://github.com/fvmassoli/fem-CarND-LaneLines-P1/blob/master/outputs/final_result.png "Pipeline final result")
 
-Regarding the step 5) I modified the draw_lines() method in order to draw the lines on the pictures and on the video. Following the suggestions given in the udacity tutorial on slack and from some hint found on the web I evaluated for each sample of lines coming from the Hough function an average value for the slope and intercept. Right and left lines are distinguished from the value of the slope (not averaged).
+Regarding the step 5) I modified the draw_lines() method in order to draw the lines on the pictures and on the video. Following the suggestions given in the udacity tutorial on slack and from some hints found on the web I evaluated for each sample of lines coming from the Hough function an average value for the slope and intercept. Right and left lines are distinguished from the value of the slope (not averaged).
 In order to properly take into account the difference characteristics among picture and video I rewrote the draw_lines() method. In particular the in the video I evaluated the "on-line average" i.e. the line end points are evaluated by averaging among the last ten available values of line points themselves.
 The ptm parameter set the number of points to consider in order to evaluate such average points.
 
